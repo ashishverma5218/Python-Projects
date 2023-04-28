@@ -1,4 +1,3 @@
-
 bids  = {}
 bidding_finished  = False
 
