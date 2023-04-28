@@ -1,19 +1,44 @@
 import random
-
-n = random.randint(1, 30)
-number_of_guesses = 1
-print("Number of guesses is limited to only 5 times ")
-while number_of_guesses <= 5:
-    guess_number = int(input("Guess the number in between(1-30) :"))
-    if guess_number < n:
-        print("too low")
-    elif guess_number > n:
-        print("too high")
-    else:
-        print("\nyou won the game\n")
-        print(number_of_guesses, "no of guesses you took to finish")
+while True:
+    level = input("Easy or Hard ? ").lower()
+    if level == "easy":
+        no_of_lifes = 1
+        answer = random.randint(1, 30)
+        while no_of_lifes <= 8:
+            user_answer = int(input("Guess a number b/w 1 to 30 ? "))
+            if user_answer > 30 or user_answer < 1:
+                print("Invalid.... Please Choose b/w 1 to 30 ")
+            elif user_answer < answer:
+                print("Too low ")
+            elif user_answer > answer:
+                print("Too high ")
+            else:
+                print("You win the game...! ")
+                print("You take", no_of_lifes, "Chance to finish ")
+                break
+            print("Chances left ", 8 - no_of_lifes)
+            no_of_lifes = no_of_lifes + 1
+        if no_of_lifes > 8:
+            print("Game Over You loose...!", f"The correct answer is {answer}")
+    elif level == "hard":
+        no_of_lifes = 1
+        answer = random.randint(1, 30)
+        while no_of_lifes <= 5:
+            user_answer = int(input("Guess a Number b/w 1 to 30 ? "))
+            if user_answer > 30 or user_answer < 1:
+                print("Invalid.... Please Choose b/w 1 to 30 ")
+            if user_answer < answer:
+                print("Too low ")
+            elif user_answer > answer:
+                print("Too high ")
+            else:
+                print("You win the game...! ")
+                print("You take", no_of_lifes, "Chance to finish ")
+                break
+            print("Chances left ", 5 - no_of_lifes)
+            no_of_lifes = no_of_lifes + 1
+        if no_of_lifes > 5:
+            print("Game Over You loose...! ", f"The correct answer is {answer}")
+    play_again = input("Play again Y/N ?").lower()
+    if play_again !='y':
         break
-    print("no. of guesses left", 5 - number_of_guesses)
-    number_of_guesses = number_of_guesses + 1
-if number_of_guesses > 5:
-    print(" game over \n You loose the game")
